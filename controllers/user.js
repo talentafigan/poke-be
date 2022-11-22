@@ -134,4 +134,34 @@ router.put("/item/:id", async (req, res) => {
   }
 });
 
+router.delete("/item/:id", async (req, res) => {
+  try {
+    const getAuth = await AuthService.validate(req.headers.token);
+    if (!getAuth) {
+      return res.status(401).send({
+        message: "Unauthorized",
+      });
+    }
+    const findItem = await UserItemService.findOne(req.params.id);
+    if (!findItem) {
+      return res.status(400).json({
+        message: "Item Not Found",
+      });
+    }
+    const deleteItem = await UserItemService.delete(req.params.id);
+    if (!deleteItem) {
+      return res.status(400).json({
+        message: "Failed Delete Item",
+      });
+    }
+    return res.status(200).json({
+      message: "Success Delete Item",
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "Application Error",
+    });
+  }
+});
+
 module.exports = router;

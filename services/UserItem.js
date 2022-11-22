@@ -13,6 +13,11 @@ module.exports = {
     const newUserItem = new UserItem(payload);
     return newUserItem.save();
   },
+  delete(item) {
+    return UserItem.findOneAndDelete({
+      item,
+    });
+  },
   update(id, payload) {
     return UserItem.findOneAndUpdate(
       {
