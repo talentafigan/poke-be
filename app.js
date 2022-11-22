@@ -11,7 +11,6 @@ var cors = require('cors')
 const ControllerAuth = require("./controllers/auth");
 var app = express();
 
-app.use(cors)
 
 // app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
@@ -28,6 +27,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(cors)
 
 app.use("/", indexRouter);
 app.use("/auth", ControllerAuth);
