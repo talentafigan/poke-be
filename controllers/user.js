@@ -3,7 +3,6 @@ const router = express.Router();
 const UserService = require("../services/User");
 const UserItemService = require("../services/UserItem");
 const AuthService = require("../services/Auth");
-
 router.post("/guest", async (req, res) => {
   try {
     const createGuest = await UserService.createGuest();

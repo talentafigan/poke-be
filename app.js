@@ -7,8 +7,11 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 var indexRouter = require("./controllers/index");
 const ControllerUser = require("./controllers/user");
+var cors = require('cors')
 const ControllerAuth = require("./controllers/auth");
 var app = express();
+
+app.use(cors)
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
