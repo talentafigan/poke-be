@@ -10,8 +10,6 @@ const ControllerUser = require("./controllers/user");
 const ControllerAuth = require("./controllers/auth");
 var app = express();
 
-const path = require("path");
-
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
