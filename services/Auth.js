@@ -14,6 +14,11 @@ module.exports = {
     });
     return newAuth.save();
   },
+  findByToken(token) {
+    return HistoryAuth.findOne({
+      token,
+    });
+  },
   validate(token) {
     return new Promise(async (resolve, reject) => {
       try {
