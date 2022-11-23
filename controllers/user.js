@@ -72,9 +72,12 @@ router.get("/item", async (req, res) => {
         message: "Unauthorized",
       });
     }
-    const findItem = await UserItemService.get({
-      user: getAuth.user.id,
-    });
+    const findItem = await UserItemService.get(getAuth.user.id);
+    if (!findItem || findItem.length === 0) {
+      return res.status(400).json({
+        message: "Item Not Found",
+      });
+    }
     return res.status(200).json(findItem);
   } catch (error) {
     return res.status(500).send({

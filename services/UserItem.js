@@ -6,8 +6,10 @@ module.exports = {
       item,
     });
   },
-  get(query) {
-    return UserItem.find(query);
+  get(user) {
+    return UserItem.find({
+      user,
+    });
   },
   create(payload) {
     const newUserItem = new UserItem(payload);
