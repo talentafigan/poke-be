@@ -46,12 +46,6 @@ router.post("/item", async (req, res) => {
 
 router.post("/item/bet", async (req, res) => {
   try {
-    const getAuth = await AuthService.validate(req.headers.token);
-    if (!getAuth) {
-      return res.status(401).send({
-        message: "Unauthorized",
-      });
-    }
     const isLucky = !!0.5 && Math.random() < 0.5;
     if (!isLucky) {
       return res.status(400).json({
@@ -94,7 +88,10 @@ router.get("/item/:id", async (req, res) => {
         message: "Unauthorized",
       });
     }
-    const findItem = await UserItemService.findOne(req.params.id);
+    const findItem = await UserItemService.findOne(
+      req.params.id,
+      getAuth.user.id
+    );
     if (!findItem) {
       return res.status(400).json({
         message: "Item Not Found",

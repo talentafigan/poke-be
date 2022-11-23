@@ -1,9 +1,10 @@
 const UserItem = require("../models/UserItem");
 
 module.exports = {
-  findOne(item) {
+  findOne(item, user) {
     return UserItem.findOne({
       item,
+      user,
     });
   },
   get(user) {
