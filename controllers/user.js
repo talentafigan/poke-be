@@ -113,7 +113,10 @@ router.put("/item/:id", async (req, res) => {
         message: "Unauthorized",
       });
     }
-    const findItem = await UserItemService.findOne(req.params.id);
+    const findItem = await UserItemService.findOne(
+      req.params.id,
+      getAuth.user.id
+    );
     if (!findItem) {
       return res.status(400).json({
         message: "Item Not Found",
@@ -142,7 +145,10 @@ router.delete("/item/:id", async (req, res) => {
         message: "Unauthorized",
       });
     }
-    const findItem = await UserItemService.findOne(req.params.id);
+    const findItem = await UserItemService.findOne(
+      req.params.id,
+      getAuth.user.id
+    );
     if (!findItem) {
       return res.status(400).json({
         message: "Item Not Found",
